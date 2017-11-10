@@ -8,6 +8,7 @@
   <property name="main.build.dir" location="${basedir}/build/bin" />
   <property name="test.src.dir" location="${basedir}/src/test" />
   <property name="test.build.dir" location="${basedir}/build/test" />
+  <property name="external.src.dir" location="${basedir}/external/" />
 
   <!-- Classpath below is used by the junit.  
        If you are using the command line, fill in correct locations
@@ -17,6 +18,13 @@
     <pathelement location="/home/maxwels2/Documents/csc250/junit-4.12.jar"/>
     <pathelement location="/home/maxwels2/Documents/csc250/hamcrest-core-1.3.jar"/>
     <pathelement location="${main.build.dir}"/>
+	<pathelement location="${external.src.dir}"/>
+  </path>
+
+  <!-- SrcDir -->
+  <path id="src.path">
+	<pathelement location="${main.build.dir}"/>
+	<pathelement location="${external.src.dir}"/>
   </path>
 
   <!-- Usual clean task -->
@@ -37,7 +45,8 @@
   <target name="compile">
     <mkdir dir="${main.build.dir}" />
     <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" includeantruntime="false"> 
-    </javac>
+      <src refid="src.path" />
+	</javac>
   </target>
 
   <!-- This builds all tests.  NOTICE the use of classpath.test -->
