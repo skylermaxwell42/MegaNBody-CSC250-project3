@@ -4,7 +4,6 @@
  *  Dependencies: Quad.java StdDraw.java
  *
  *  Client program to test constructor and methods of Quad.java
- *  for the Barnes-Hut project in COS126.
  *
  *
  *  % java QuadTester
@@ -24,8 +23,9 @@
  *  (10, 10) not in any quadrant.
  *
  *  Nothing printed above means every point tested occurred
- *  in exactly one sub-quadrant. This useful for testing,
- *  but does not indicate an error in your code.
+ *  in exactly one sub-quadrant. This is useful for testing.
+ *  BUT, if your border point is counted in multiple quadrants, 
+*   it is OK.
  *
  *************************************************************************/
 
@@ -110,13 +110,13 @@ public class QuadTester {
         // testing 9 border points
         System.out.println();
         System.out.println("Testing border points.");
-        for (int x = -10; x <= 10; x = x + 10) {
+	for (int x = -10; x <= 10; x = x + 10) {
             for (int y = -10; y <= 10; y = y + 10) {
                 int count = 0;
-                if (nw.contains(x, y)) count++;
+		if (nw.contains(x, y)) count++;
                 if (ne.contains(x, y)) count++;
                 if (sw.contains(x, y)) count++;
-                if (se.contains(x, y)) count++;
+                if (sw.contains(x, y)) count++;
                 if (count == 0)
                     System.out.println("(" + x + ", " + y + ") not in any quadrant.");
                 if (count > 1)
