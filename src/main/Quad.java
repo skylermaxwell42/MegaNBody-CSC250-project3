@@ -1,39 +1,85 @@
 public class Quad {
-    
-    // create a new square with the given parameters (assume it is square)
-    public Quad(double xmid, double ymid, double length) {
+
+    private double xmid;
+    private double ymid;
+    private double len;
+
+    //  Default Constructor
+    public Quad(double xmid, double ymid, double len) {
+
+        this.xmid = xmid;
+        this.ymid = ymid;
+        this.len = len;
     }
 
-    // return the length of one side of the square quadrant
-    public double length() {
+    //  Returns length
+    public double len() {
+
+        return len;
     }
 
-    // does quadrant contain (x, y)?
+    //  Returns True if Quadrant contains a body
     public boolean contains(double x, double y) {
+
+        double midpnt = this.len / 2.0;
+
+        boolean contains = (x >= this.xmid - midpnt &&
+                            x <= this.xmid + midpnt &&
+                            y >= this.ymid - midpnt &&
+                            y <= this.ymid + midpnt);
+        return contains;
     }
 
-    // return a new object that represents the northwest quadrant
+    // Creates Quadrants
     public Quad NW() {
+        double x = this.xmid - this.len / 4.0;
+        double y = this.ymid + this.len / 4.0;
+        double length = this.len / 2.0;
+        Quad NW = new Quad(x, y, length);
+        return NW;
     }
 
-    // return a new object that represents the northeast quadrant
     public Quad NE() {
+        double x = this.xmid + this.len / 4.0;
+        double y = this.ymid + this.len / 4.0;
+        double len = this.len / 2.0;
+        Quad NE = new Quad(x, y, len);
+        return NE;
     }
 
-    // return a new object that represents the southwest quadrant
     public Quad SW() {
+        double x = this.xmid - this.len / 4.0;
+        double y = this.ymid - this.len / 4.0;
+        double len = this.len / 2.0;
+        Quad SW = new Quad(x, y, len);
+        return SW;
     }
 
-    // return a new object that represents the southeast quadrant
     public Quad SE() {
+        double x = this.xmid + this.len / 4.0;
+        double y = this.ymid - this.len / 4.0;
+        double len = this.len / 2.0;
+        Quad SE = new Quad(x, y, len);
+        return SE;
     }
 
-    // draw an unfilled rectangle that represents the quadrant
+    //  Draws Quadrants
     public void draw() {
+        StdDraw.rectangle(xmid, ymid, len / 2.0, len / 2.0);
     }
 
-    // return a string representation of the quadrant for debugging
+    //  To String method
     public String toString() {
+        String endl = "\n";
+        for (int row = 0; row < this.len; row++) {
+            for (int col = 0; col < this.len; col++) {
+                if (row == 0 || col == 0 || row == this.len - 1 || col == this.len - 1)
+                    endl += "*";
+                else
+                    endl += " ";
+            }
+            endl += "\n";
+        }
+        return endl;
     }
-
 }

@@ -24,7 +24,10 @@
   <!-- SrcDir -->
   <path id="src.path">
 	<pathelement location="${main.build.dir}"/>
-	<pathelement location="${external.src.dir}"/>
+  </path>
+
+  <path id="external.path">
+    <pathelement location="${external.src.dir}"/>
   </path>
 
   <!-- Usual clean task -->
@@ -46,6 +49,7 @@
     <mkdir dir="${main.build.dir}" />
     <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" includeantruntime="false"> 
       <src refid="src.path" />
+      <src refid="external.path" />
 	</javac>
   </target>
 

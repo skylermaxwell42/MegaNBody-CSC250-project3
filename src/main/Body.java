@@ -64,4 +64,17 @@ public class Body {
         return String.format("%10.3E %10.3E %10.3E %10.3E %10.3E", rx, ry, vx, vy, mass);
     }
 
+    // Returns true if this body is located in Quad quad
+    public boolean in(Quad quad) {
+        return quad.contains(this.rx, this.ry);
+    }
+
+    // Combines two bodies
+    public Body plus(Body body) {
+        double m = this.mass + body.mass;
+        double x = (this.rx * this.mass + body.rx * body.mass) / m;
+        double y = (this.ry * this.mass + body.ry * body.mass) / m;
+
+        return new Body(x, y, this.vx, body.vx, m, this.color);
+    }
 }
