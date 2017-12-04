@@ -1,10 +1,13 @@
 import java.awt.Color;
-
+// BH Tree class
 public class BHTree {
+
     private final double thresh = 0.5;
 
     private Body body;
     private Quad quad;
+
+    //  Children Nodes
     private BHTree NW;
     private BHTree NE;
     private BHTree SW;
@@ -31,8 +34,8 @@ public class BHTree {
 
         //  Body is a leaf node
         if (! isExt()) {
-            //  Insert body b
-            putBody(b);
+            // Insert body b
+            insertHelper(b);
 
             // Update COM
             body = body.plus(b);
@@ -48,8 +51,8 @@ public class BHTree {
             SW = new BHTree(quad.SW());
 
             // Insert body and b
-            putBody(this.body);
-            putBody(b);
+            insertHelper(this.body);
+            insertHelper(b);
 
             // Update the COM
             body = body.plus(b);
@@ -58,9 +61,9 @@ public class BHTree {
     }
 
 
-    // insert() helper method
-    //Puts body b in a given quadrant
-    private void putBody(Body b) {
+    //  insert() helper method
+    //  Puts body b in a given quadrant recursively
+    private void insertHelper(Body b) {
         if (b.in(quad.NW())) {
             NW.insert(b);
         }

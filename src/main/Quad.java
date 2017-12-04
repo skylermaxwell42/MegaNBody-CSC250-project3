@@ -31,14 +31,6 @@ public class Quad {
     }
 
     // Creates Quadrants
-    public Quad NW() {
-        double x = this.xmid - this.len / 4.0;
-        double y = this.ymid + this.len / 4.0;
-        double length = this.len / 2.0;
-        Quad NW = new Quad(x, y, length);
-        return NW;
-    }
-
     public Quad NE() {
         double x = this.xmid + this.len / 4.0;
         double y = this.ymid + this.len / 4.0;
@@ -47,12 +39,12 @@ public class Quad {
         return NE;
     }
 
-    public Quad SW() {
+    public Quad NW() {
         double x = this.xmid - this.len / 4.0;
-        double y = this.ymid - this.len / 4.0;
-        double len = this.len / 2.0;
-        Quad SW = new Quad(x, y, len);
-        return SW;
+        double y = this.ymid + this.len / 4.0;
+        double length = this.len / 2.0;
+        Quad NW = new Quad(x, y, length);
+        return NW;
     }
 
     public Quad SE() {
@@ -63,9 +55,12 @@ public class Quad {
         return SE;
     }
 
-    //  Draws Quadrants
-    public void draw() {
-        StdDraw.rectangle(xmid, ymid, len / 2.0, len / 2.0);
+    public Quad SW() {
+        double x = this.xmid - this.len / 4.0;
+        double y = this.ymid - this.len / 4.0;
+        double len = this.len / 2.0;
+        Quad SW = new Quad(x, y, len);
+        return SW;
     }
 
     //  To String method
@@ -81,5 +76,10 @@ public class Quad {
             endl += "\n";
         }
         return endl;
+    }
+
+    //  Draws Quadrant
+    public void draw() {
+        StdDraw.rectangle(xmid, ymid, len / 2.0, len / 2.0);
     }
 }

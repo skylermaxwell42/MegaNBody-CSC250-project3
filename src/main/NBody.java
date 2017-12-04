@@ -37,9 +37,11 @@ public class NBody {
             BHTree t = new BHTree(q);
 
             //  Insert bodies in tree
-            for (int i = 0; i < numBodies; i++)
-                if (bodies[i].in(q))
+            for (int i = 0; i < numBodies; i++) {
+                if (bodies[i].in(q)) {
                    t.insert(bodies[i]);
+               }
+           }
 
             //  Updates Forces
             for (int i = 0; i < numBodies; i++) {
@@ -50,9 +52,10 @@ public class NBody {
 
             // Draw the bodies
             StdDraw.clear(StdDraw.BLACK);
-            for (int i = 0; i < numBodies; i++)
+            for (int i = 0; i < numBodies; i++) {
                 bodies[i].draw();
-
+            }
+            
             StdDraw.show(10);
         }
     }

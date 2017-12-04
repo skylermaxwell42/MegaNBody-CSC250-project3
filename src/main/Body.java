@@ -69,7 +69,7 @@ public class Body {
         return quad.contains(this.rx, this.ry);
     }
 
-    // Combines two bodies
+    // Approximates two bodies as one and returns the combined body
     public Body plus(Body body) {
         double m = this.mass + body.mass;
         double x = (this.rx * this.mass + body.rx * body.mass) / m;
